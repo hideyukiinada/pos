@@ -24,14 +24,7 @@ import nltk
 log = logging.getLogger(__name__)
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))  # Change the 2nd arg to INFO to suppress debug logging
 
-BASE_DIR = "/tmp/pos"
-WEIGHTS_PATH = Path(BASE_DIR) / Path("weights.h5")
-LOG_DIR_PATH = Path(BASE_DIR) / Path("log")
-
-EPOCHS = 200
-BATCH_SIZE = 64
-MAX_SEQUENCE_SIZE = 256
-
+import config
 
 def load_data(test_ratio=0.1):
     """Load corpus
@@ -80,8 +73,8 @@ def load_data(test_ratio=0.1):
         tag_id_only_sentence = [tag2id[tag] for word, tag in tagged_sentence]
 
         # Create placeholder ndarrays filled with <PAD>
-        word_id_only_sentence_np = np.full(MAX_SEQUENCE_SIZE, word2id["<PAD>"], dtype=np.int32)
-        tag_id_only_sentence_np = np.full(MAX_SEQUENCE_SIZE, tag2id["<PAD>"], dtype=np.int32)
+        word_id_only_sentence_np = np.full(config.MAX_SEQUENCE_SIZE, word2id["<PAD>"], dtype=np.int32)
+        tag_id_only_sentence_np = np.full(config.MAX_SEQUENCE_SIZE, tag2id["<PAD>"], dtype=np.int32)
 
         # Copy sentence to numpy array
         word_id_only_sentence_np[:len(word_id_only_sentence)] = word_id_only_sentence
@@ -109,10 +102,10 @@ def load_data(test_ratio=0.1):
     id2tag = {id: tag for tag, id in tag2id.items()}
 
     print(x_train.shape)
-    x_train = x_train.reshape((num_training_samples, MAX_SEQUENCE_SIZE, 1))
-    y_train = y_train.reshape((num_training_samples, MAX_SEQUENCE_SIZE, 1))
-    x_test = x_test.reshape((num_test_samples, MAX_SEQUENCE_SIZE, 1))
-    y_test = y_test.reshape((num_test_samples, MAX_SEQUENCE_SIZE, 1))
+    x_train = x_train.reshape((num_training_samples, config.MAX_SEQUENCE_SIZE, 1))
+    y_train = y_train.reshape((num_training_samples, config.MAX_SEQUENCE_SIZE, 1))
+    x_test = x_test.reshape((num_test_samples, config.MAX_SEQUENCE_SIZE, 1))
+    y_test = y_test.reshape((num_test_samples, config.MAX_SEQUENCE_SIZE, 1))
 
     return (x_train, y_train), (x_test, y_test), (word2id, id2word), (tag2id, id2tag)
 

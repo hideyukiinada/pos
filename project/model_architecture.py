@@ -29,8 +29,13 @@ def build_model(num_tags):
     ----------
     num_tags: int
         Number of units in the final dense layer.
+
+    Returns
+    -------
+    model: Sequential
+        Keras Sequential model
     """
-    # Set up a model
+
     model = Sequential()
     model.add(LSTM(100, input_shape=(config.MAX_SEQUENCE_SIZE, 1),
                    return_sequences=True))  # input = [batch_size, ts, 1], output = [batch_size, ts, 1]

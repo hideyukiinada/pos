@@ -14,20 +14,15 @@ from pathlib import Path
 import collections
 import numpy as np
 import keras
-from keras.models import Sequential
-from keras.layers import Dense, TimeDistributed
-#from keras.layers import LSTM # Slow, do not use
-from keras.layers import CuDNNLSTM as LSTM
-
 import nltk
 
 from load_data import load_data
 import config
 import model_architecture
 
-
 log = logging.getLogger(__name__)
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))  # Change the 2nd arg to INFO to suppress debug logging
+
 
 def main():
     """Defines an application's main functionality"""
@@ -44,17 +39,24 @@ def main():
     y_train_oh = keras.utils.np_utils.to_categorical(y_train, num_tags)
     y_test_oh = keras.utils.np_utils.to_categorical(y_test, num_tags)
 
+    log.info("Data information")
+    log.info("Size of training set: %d" % (x_train.shape[0]))
+    log.info("Shape of training set: %s" % (repr(x_train.shape)))
+    log.info("Size of test set: %d" % (x_test.shape[0]))
+    log.info("Number of unique wordss: %d" % (len(word2id)))
     log.info("Number of unique tags: %d" % (num_tags))
-    # Set up a model
+    log.info("Weights path: %s" % (config.WEIGHTS_PATH))
+
     model = model_architecture.build_model(num_tags)
     model.compile(optimizer='adam', loss=keras.losses.categorical_crossentropy, metrics=['categorical_accuracy'])
 
     model.fit(x=x_train, y=y_train_oh,
-              validation_data = (x_test, y_test_oh),
+              validation_data=(x_test, y_test_oh),
               batch_size=128, epochs=config.EPOCHS,
-              verbose=1) # progress bar
+              verbose=1)  # progress bar
 
     model.save_weights(config.WEIGHTS_PATH)
+
 
 if __name__ == "__main__":
     main()

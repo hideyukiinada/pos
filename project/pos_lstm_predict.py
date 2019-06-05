@@ -14,10 +14,6 @@ from pathlib import Path
 import collections
 import numpy as np
 import keras
-from keras.models import Sequential
-from keras.layers import Dense, TimeDistributed
-#from keras.layers import LSTM # Slow, do not use
-from keras.layers import CuDNNLSTM as LSTM
 
 import nltk
 
