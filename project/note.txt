@@ -1,0 +1,23 @@
+CuDNNLSTM vs LSTM Performance Comparison
+
+Date:June 4, 2019
+
+How to import
+-------------
+from keras.layers import LSTM
+from keras.layers import CuDNNLSTM as LSTM
+
+Two epoch performance
+---------------------
+LSTM
+ - 189s - loss: 0.3703 - categorical_accuracy: 0.9371
+ - 188s - loss: 0.2083 - categorical_accuracy: 0.9455
+
+CuDNNLSTM
+ - 34s - loss: 0.3776 - categorical_accuracy: 0.9365
+ - 33s - loss: 0.2059 - categorical_accuracy: 0.9460
+
+ Loss
+ 20 epochs
+ 51606/51606 [==============================] - 43s 824us/step -
+ loss: 0.1462 - categorical_accuracy: 0.9599 - val_loss: 0.1210 - val_categorical_accuracy: 0.9673

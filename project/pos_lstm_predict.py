@@ -28,7 +28,7 @@ BASE_DIR = "/tmp/pos"
 WEIGHTS_PATH = Path(BASE_DIR) / Path("weights.h5")
 LOG_DIR_PATH = Path(BASE_DIR) / Path("log")
 
-EPOCHS = 20
+EPOCHS = 200
 BATCH_SIZE = 64
 MAX_SEQUENCE_SIZE = 256
 
@@ -116,6 +116,44 @@ def load_data(test_ratio=0.1):
 
     return (x_train, y_train), (x_test, y_test), (word2id, id2word), (tag2id, id2tag)
 
+def convert_input_sentence(sentence, word2id):
+    """Convert a sentence to tokens.
+
+    Parameters
+    ----------
+    sentence: str
+        A sentence in a string format.
+
+    Returns
+    -------
+    """
+#    tokenizer = nltk.WhitespaceTokenizer() # Note that punctuation is kept: ['Julie', 'is', 'very', 'pretty.']
+    tokenizer = nltk.TreebankWordTokenizer() # Note that punctuation is kept: ['Julie', 'is', 'very', 'pretty.']
+
+    tokens = tokenizer.tokenize(sentence)
+    log.info("Tokens:%s" % (repr(tokens)))
+
+    # this time you need to set unknown word to UNK
+    word_ids = list()
+    for word in tokens:
+        if word not in word2id:
+            word = "<UNK>"
+        word_id = word2id[word]
+        word_ids.append(word_id)
+
+    # Create placeholder ndarrays filled with <PAD>
+    word_id_only_sentence_np = np.full(MAX_SEQUENCE_SIZE, word2id["<PAD>"], dtype=np.int32)
+
+    # Copy sentence to numpy array
+    word_id_only_sentence_np[:len(word_ids)] = word_ids
+    word_count = len(word_ids)
+
+    x = word_id_only_sentence_np
+    x = x.reshape((1, MAX_SEQUENCE_SIZE, 1))
+
+    return x, word_count
+
+# insfin
 
 def main():
     """Defines an application's main functionality"""
@@ -125,7 +163,7 @@ def main():
     base_path = Path(BASE_DIR)
     if base_path.exists() is False:
         base_path.mkdir(exist_ok=True)
-
+        
     (x_train, y_train), (x_test, y_test), (word2id, id2word), (tag2id, id2tag) = load_data(test_ratio=0.1)
     num_tags = len(id2tag)
 
@@ -139,15 +177,39 @@ def main():
                    return_sequences=True))  # input = [batch_size, ts, 1], output = [batch_size, ts, 1]
     model.add(TimeDistributed(Dense(num_tags, activation='softmax')))
 
-    model.compile(optimizer='adam', loss=keras.losses.categorical_crossentropy, metrics=['categorical_accuracy'])
+    # model.compile(optimizer='adam', loss=keras.losses.categorical_crossentropy, metrics=['categorical_accuracy'])
+
     # Do not use sparese for a possible accuracy shape issue.
+    #
+    # model.fit(x=x_train, y=y_train_oh,
+    #           validation_data = (x_test, y_test_oh),
+    #           batch_size=128, epochs=1,
+    #           verbose=1) # progress bar
 
-    model.fit(x=x_train, y=y_train_oh,
-              validation_data = (x_test, y_test_oh),
-              batch_size=128, epochs=EPOCHS,
-              verbose=1) # progress bar
+    model.load_weights(WEIGHTS_PATH)
 
-    model.save_weights(WEIGHTS_PATH)
+    while True:
+        sentence = input("Enter a sentence (press 'q' to quit): ")
+        if sentence == 'q':
+            break
+
+        word_ids, word_count = convert_input_sentence(sentence, word2id)
+        y_hat = model.predict(word_ids)
+
+        word_ids = word_ids.reshape((MAX_SEQUENCE_SIZE))
+        print(word_ids.shape)
+        #print(y_hat)
+
+        y_hat = y_hat[0]
+        print(y_hat.shape)
+
+        for i in range(word_count):
+            tag_id = np.argmax(y_hat[i])
+            tag = id2tag[tag_id]
+
+            word_id = word_ids[i]
+            print("[%d] word: %s tag: %s" % (i, id2word[word_id], tag))
+
 
 if __name__ == "__main__":
     main()
