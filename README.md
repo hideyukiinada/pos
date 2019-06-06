@@ -1,6 +1,6 @@
 # Part of speech tagging using LSTM
 
-This repo contains example code for tagging words in a sentence with corresponding [part of speech] (https://en.wikipedia.org/wiki/Part_of_speech) os POS using LSTM.  For example, parts of speech for a sentence *Dogs are awesome* is noun (for *Dogs*), verb (for *are*), adjective (for *awesome*). period (for the final .).<br>
+This repo contains example code for tagging words in a sentence with corresponding [part of speech](https://en.wikipedia.org/wiki/Part_of_speech) os POS using LSTM.  For example, parts of speech for a sentence *Dogs are awesome* is noun (for *Dogs*), verb (for *are*), adjective (for *awesome*). period (for the final .).<br>
 Before you can predict POS for your sentence, you need to train a model using [Brown Corpus](https://en.wikipedia.org/wiki/Brown_Corpus).
 Once the model is trained, you can enter an English sentence to predict the tag for each word.
 If the word is not recognized, a special tag <UNK> (meaning unknown) is output.
@@ -8,6 +8,16 @@ If the word is not recognized, a special tag <UNK> (meaning unknown) is output.
 ## How to train
 ### Installation
 Have a look at the requirements.txt and verify that you have these packages.  If not, install them using pip.
+
+### Use of NVIDIA GPU
+Use of NVIDIA GPU is strongly recommended.  
+If you don't have NVIDIA GPU, change the model_architecture.py to use LSTM instead of CuDNNLSTM layer. 
+I haven't tried LSTM layer, and theoretiacally it should work, though it will be much slower than CuDNNLSTM.
+I put a simple performance comparison in notes.txt.
+
+### How to configure
+Configurable parameters are specified in config.py.
+By default, the model contains the embedding layer.  If you want to try out the impact of not having an embedding layer, you can set use_embedding = False.
 
 ### Run the training script.
 Run:
