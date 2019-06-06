@@ -85,7 +85,7 @@ Aimee saw a big building in the city.
 ```
 the word Aimee is not in Brown Corus, and gets tagged as a noun occurring in the headline (NN-HL).
 
-<img src="assets/images/aimee.jpg" width="800"/>
+<img src="assets/images/aimee.jpg" width="600px"/>
 
 *A photo of Aimée*
 
