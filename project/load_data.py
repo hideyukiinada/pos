@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Example code for part of speech tagging using LSTM.
+Dataset loading
 
 __author__ = "Hide Inada"
 __copyright__ = "Copyright 2019, Hide Inada"
@@ -10,21 +10,15 @@ __email__ = "hideyuki@gmail.com"
 
 import os
 import logging
-from pathlib import Path
 import collections
 import numpy as np
-import keras
-from keras.models import Sequential
-from keras.layers import Dense, TimeDistributed
-#from keras.layers import LSTM # Slow, do not use
-from keras.layers import CuDNNLSTM as LSTM
-
 import nltk
+
+import config
 
 log = logging.getLogger(__name__)
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))  # Change the 2nd arg to INFO to suppress debug logging
 
-import config
 
 def load_dataset(corpus='brown', test_ratio=0.1):
     """Load corpus
@@ -59,10 +53,10 @@ def load_dataset(corpus='brown', test_ratio=0.1):
     word2id = collections.defaultdict(lambda: len(word2id))  # 0-based index
     tag2id = collections.defaultdict(lambda: len(tag2id))
 
-    word2id["<UNK>"] = 0
-    word2id["<PAD>"] = 1
+    word2id[config.unk_string] = 0
+    word2id[config.pad_string] = 1
 
-    tag2id["<PAD>"] = 0
+    tag2id[config.pad_string] = 0
 
     word_id_only_sentences = list()
     tag_id_only_sentences = list()
@@ -70,7 +64,7 @@ def load_dataset(corpus='brown', test_ratio=0.1):
     if corpus == 'brown':
         tagged_sentences = nltk.corpus.brown.tagged_sents()  # [[(w11, t11), (w12, t12), ... ], [(w21, t21), (w22, t22)], ... ]
     elif corpus == 'conll2002':
-        tagged_sentences = nltk.corpus.conll2002.tagged_sents()  # [[(w11, t11), (w12, t12), ... ], [(w21, t21), (w22, t22)], ... ]
+        tagged_sentences = nltk.corpus.conll2002.tagged_sents()
     else:
         raise ValueError("Invalid corpus")
 
@@ -79,8 +73,8 @@ def load_dataset(corpus='brown', test_ratio=0.1):
         tag_id_only_sentence = [tag2id[tag] for word, tag in tagged_sentence]
 
         # Create placeholder ndarrays filled with <PAD>
-        word_id_only_sentence_np = np.full(config.MAX_SEQUENCE_SIZE, word2id["<PAD>"], dtype=np.int32)
-        tag_id_only_sentence_np = np.full(config.MAX_SEQUENCE_SIZE, tag2id["<PAD>"], dtype=np.int32)
+        word_id_only_sentence_np = np.full(config.max_sequence_size, word2id[config.pad_string], dtype=np.int32)
+        tag_id_only_sentence_np = np.full(config.max_sequence_size, tag2id[config.pad_string], dtype=np.int32)
 
         # Copy sentence to numpy array
         word_id_only_sentence_np[:len(word_id_only_sentence)] = word_id_only_sentence
@@ -107,18 +101,15 @@ def load_dataset(corpus='brown', test_ratio=0.1):
     id2word = {id: word for word, id in word2id.items()}
     id2tag = {id: tag for tag, id in tag2id.items()}
 
-    print(x_train.shape)
     if config.use_embedding:
-        x_train = x_train.reshape((num_training_samples, config.MAX_SEQUENCE_SIZE))
-        y_train = y_train.reshape((num_training_samples, config.MAX_SEQUENCE_SIZE))
-        x_test = x_test.reshape((num_test_samples, config.MAX_SEQUENCE_SIZE))
-        y_test = y_test.reshape((num_test_samples, config.MAX_SEQUENCE_SIZE))
+        x_train = x_train.reshape((num_training_samples, config.max_sequence_size))
+        y_train = y_train.reshape((num_training_samples, config.max_sequence_size))
+        x_test = x_test.reshape((num_test_samples, config.max_sequence_size))
+        y_test = y_test.reshape((num_test_samples, config.max_sequence_size))
     else:
-        x_train = x_train.reshape((num_training_samples, config.MAX_SEQUENCE_SIZE, 1))
-        y_train = y_train.reshape((num_training_samples, config.MAX_SEQUENCE_SIZE, 1))
-        x_test = x_test.reshape((num_test_samples, config.MAX_SEQUENCE_SIZE, 1))
-        y_test = y_test.reshape((num_test_samples, config.MAX_SEQUENCE_SIZE, 1))
-
+        x_train = x_train.reshape((num_training_samples, config.max_sequence_size, 1))
+        y_train = y_train.reshape((num_training_samples, config.max_sequence_size, 1))
+        x_test = x_test.reshape((num_test_samples, config.max_sequence_size, 1))
+        y_test = y_test.reshape((num_test_samples, config.max_sequence_size, 1))
 
     return (x_train, y_train), (x_test, y_test), (word2id, id2word), (tag2id, id2tag)
-

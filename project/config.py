@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Example code for part of speech tagging using LSTM.
+Configurable parameters of the scripts.
 
 __author__ = "Hide Inada"
 __copyright__ = "Copyright 2019, Hide Inada"
@@ -12,17 +12,24 @@ from pathlib import Path
 
 #corpus = "conll2002"
 corpus = 'brown'
-BASE_DIR = "./result"
-WEIGHTS_PATH = Path(BASE_DIR) / Path(corpus + "_weights.h5")
-LOG_DIR_PATH = Path(BASE_DIR) / Path("log")
 
-EPOCHS = 20
-#EPOCHS = 1
+# Weight
+base_dir = "./result"
+weights_path = Path(base_dir) / Path(corpus + "_weights.h5")
+log_dir_path = Path(base_dir) / Path("log")
 
-BATCH_SIZE = 64
-MAX_SEQUENCE_SIZE = 256 # For Brown
-#MAX_SEQUENCE_SIZE = 256 # for CONLL2002
+epochs = 20
+#epochs = 1 # for testing the flow
 
+# Data shape
+batch_size = 64
+max_sequence_size = 256 # For Brown
+#max_sequence_size = 256 # for CONLL2002
+
+# For embedding
 sample_dimension = 100
-
 use_embedding = True
+
+# Special word definitions
+unk_string = "<UNK>"
+pad_string = "<PAD>"
