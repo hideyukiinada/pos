@@ -24,7 +24,7 @@ import model_architecture
 log = logging.getLogger(__name__)
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))  # Change the 2nd arg to INFO to suppress debug logging
 
-def convert_input_sentence(sentence, word2id):
+def convert_input_sentence(sentence, word2id, use_embedding=False):
     """Convert a sentence to tokens.
 
     Parameters
@@ -57,7 +57,11 @@ def convert_input_sentence(sentence, word2id):
     word_count = len(word_ids)
 
     x = word_id_only_sentence_np
-    x = x.reshape((1, config.MAX_SEQUENCE_SIZE, 1))
+
+    if use_embedding:
+        x = x.reshape((1, config.MAX_SEQUENCE_SIZE))
+    else:
+        x = x.reshape((1, config.MAX_SEQUENCE_SIZE, 1))
 
     return x, word_count
 
@@ -73,10 +77,17 @@ def main():
     #     base_path.mkdir(exist_ok=True)
         
     (x_train, y_train), (x_test, y_test), (word2id, id2word), (tag2id, id2tag) = load_dataset(config.corpus, test_ratio=0.1)
+    voc_size = len(word2id)
     num_tags = len(id2tag)
 
     log.info("Number of unique tags: %d" % (num_tags))
-    model = model_architecture.build_model(num_tags)
+
+    if config.use_embedding is False:
+        model = model_architecture.build_model(num_tags)
+    else:
+        model = model_architecture.build_model_with_embedding(num_tags, voc_size, config.sample_dimension)
+
+
     model.load_weights(config.WEIGHTS_PATH)
 
     while True:
@@ -84,7 +95,7 @@ def main():
         if sentence == 'q':
             break
 
-        word_ids, word_count = convert_input_sentence(sentence, word2id)
+        word_ids, word_count = convert_input_sentence(sentence, word2id, config.use_embedding)
         y_hat = model.predict(word_ids)
 
         word_ids = word_ids.reshape((config.MAX_SEQUENCE_SIZE))

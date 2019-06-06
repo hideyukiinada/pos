@@ -34,6 +34,7 @@ def main():
         base_path.mkdir(exist_ok=True)
 
     (x_train, y_train), (x_test, y_test), (word2id, id2word), (tag2id, id2tag) = load_dataset(config.corpus, test_ratio=0.1)
+    voc_size = len(word2id)
     num_tags = len(id2tag)
 
     y_train_oh = keras.utils.np_utils.to_categorical(y_train, num_tags)
@@ -47,7 +48,11 @@ def main():
     log.info("Number of unique tags: %d" % (num_tags))
     log.info("Weights path: %s" % (config.WEIGHTS_PATH))
 
-    model = model_architecture.build_model(num_tags)
+    if config.use_embedding is False:
+        model = model_architecture.build_model(num_tags)
+    else:
+        model = model_architecture.build_model_with_embedding(num_tags, voc_size, config.sample_dimension)
+
     model.compile(optimizer='adam', loss=keras.losses.categorical_crossentropy, metrics=['categorical_accuracy'])
 
     model.fit(x=x_train, y=y_train_oh,

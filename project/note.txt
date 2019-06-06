@@ -29,6 +29,14 @@ Loss
  51606/51606 [==============================] - 42s 822us/step
  loss: 0.1441 - categorical_accuracy: 0.9603 - val_loss: 0.1204 - val_categorical_accuracy: 0.9670
 
+With embedding
+# Run 3
+
+20 epochs
+51606/51606 [==============================] - 45s 870us/step -
+loss: 0.0052 - categorical_accuracy: 0.9984 - val_loss: 0.0202 - val_categorical_accuracy: 0.9950
+
+
 ConLL2002
 
 INFO:__main__:Size of training set: 32085

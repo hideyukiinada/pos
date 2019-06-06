@@ -67,7 +67,7 @@ def load_dataset(corpus='brown', test_ratio=0.1):
     word_id_only_sentences = list()
     tag_id_only_sentences = list()
 
-    if corpus == 'brown:':
+    if corpus == 'brown':
         tagged_sentences = nltk.corpus.brown.tagged_sents()  # [[(w11, t11), (w12, t12), ... ], [(w21, t21), (w22, t22)], ... ]
     elif corpus == 'conll2002':
         tagged_sentences = nltk.corpus.conll2002.tagged_sents()  # [[(w11, t11), (w12, t12), ... ], [(w21, t21), (w22, t22)], ... ]
@@ -108,10 +108,17 @@ def load_dataset(corpus='brown', test_ratio=0.1):
     id2tag = {id: tag for tag, id in tag2id.items()}
 
     print(x_train.shape)
-    x_train = x_train.reshape((num_training_samples, config.MAX_SEQUENCE_SIZE, 1))
-    y_train = y_train.reshape((num_training_samples, config.MAX_SEQUENCE_SIZE, 1))
-    x_test = x_test.reshape((num_test_samples, config.MAX_SEQUENCE_SIZE, 1))
-    y_test = y_test.reshape((num_test_samples, config.MAX_SEQUENCE_SIZE, 1))
+    if config.use_embedding:
+        x_train = x_train.reshape((num_training_samples, config.MAX_SEQUENCE_SIZE))
+        y_train = y_train.reshape((num_training_samples, config.MAX_SEQUENCE_SIZE))
+        x_test = x_test.reshape((num_test_samples, config.MAX_SEQUENCE_SIZE))
+        y_test = y_test.reshape((num_test_samples, config.MAX_SEQUENCE_SIZE))
+    else:
+        x_train = x_train.reshape((num_training_samples, config.MAX_SEQUENCE_SIZE, 1))
+        y_train = y_train.reshape((num_training_samples, config.MAX_SEQUENCE_SIZE, 1))
+        x_test = x_test.reshape((num_test_samples, config.MAX_SEQUENCE_SIZE, 1))
+        y_test = y_test.reshape((num_test_samples, config.MAX_SEQUENCE_SIZE, 1))
+
 
     return (x_train, y_train), (x_test, y_test), (word2id, id2word), (tag2id, id2tag)
 
