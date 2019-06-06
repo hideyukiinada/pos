@@ -17,7 +17,9 @@ You may need to add a Python path to the project directory if your IDE does not 
 
 ## How to predict
 Run
+```console
 pos_lstm_predict.py
+```
 
 Again, you may need to add a Python path to the project directory if your IDE does not set it automatically.
 
