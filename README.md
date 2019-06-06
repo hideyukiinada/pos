@@ -11,7 +11,9 @@ Have a look at the requirements.txt and verify that you have these packages.  If
 
 ### Run the training script.
 Run:
+```console
 pos_lstm.py
+```
 
 You may need to add a Python path to the project directory if your IDE does not set it automatically.
 
@@ -25,18 +27,25 @@ Again, you may need to add a Python path to the project directory if your IDE do
 
 Once the application starts, it asks you to enter a sentence:
 
+```console
 Enter a sentence (press 'q' to quit):
+```
 
-Enter a sample sentence:
+Enter a sample sentence, 
 I saw a big I saw a big building in the city.
 and hit the ENTER key.
 
+```console
 Enter a sentence (press 'q' to quit): I saw a big building in the city.<br>
+```
 
 It will display the tokenized sentence:
+```console
 INFO:__main__:Tokens:\['I', 'saw', 'a', 'big', 'building', 'in', 'the', 'city', '.'\]<br>
+```
 
 Then outputs the POS tag for each word:
+```console
 \[0\] word: I tag: PPSS<br>
 \[1\] word: saw tag: VBD<br>
 \[2\] word: a tag: AT<br>
@@ -46,6 +55,7 @@ Then outputs the POS tag for each word:
 \[6\] word: the tag: AT<br>
 \[7\] word: city tag: NN<br>
 \[8\] word: . tag: .<br>
+```
 
 ## Expected loss after 20 epochs
 Here is the loss and accuracy data in my environment after training for 20 epochs:<br>
