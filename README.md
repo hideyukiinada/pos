@@ -36,30 +36,32 @@ I saw a big I saw a big building in the city.
 and hit the ENTER key.
 
 ```console
-Enter a sentence (press 'q' to quit): I saw a big building in the city.<br>
+Enter a sentence (press 'q' to quit): I saw a big building in the city.
 ```
 
 It will display the tokenized sentence:
 ```console
-INFO:__main__:Tokens:\['I', 'saw', 'a', 'big', 'building', 'in', 'the', 'city', '.'\]<br>
+INFO:__main__:Tokens:\['I', 'saw', 'a', 'big', 'building', 'in', 'the', 'city', '.'\]
 ```
 
 Then outputs the POS tag for each word:
 ```console
-\[0\] word: I tag: PPSS<br>
-\[1\] word: saw tag: VBD<br>
-\[2\] word: a tag: AT<br>
-\[3\] word: big tag: JJ<br>
-\[4\] word: building tag: NN<br>
-\[5\] word: in tag: IN<br>
-\[6\] word: the tag: AT<br>
-\[7\] word: city tag: NN<br>
-\[8\] word: . tag: .<br>
+\[0\] word: I tag: PPSS
+\[1\] word: saw tag: VBD
+\[2\] word: a tag: AT
+\[3\] word: big tag: JJ
+\[4\] word: building tag: NN
+\[5\] word: in tag: IN
+\[6\] word: the tag: AT
+\[7\] word: city tag: NN
+\[8\] word: . tag: .
 ```
 
 ## Expected loss after 20 epochs
 Here is the loss and accuracy data in my environment after training for 20 epochs:<br>
+```console
  loss: 0.0057 - categorical_accuracy: 0.9983 - val_loss: 0.0210 - val_categorical_accuracy: 0.9950
+```
 
 # Credit
 1. I used \[1\] below as a reference for the model.<br>
