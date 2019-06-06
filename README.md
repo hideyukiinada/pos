@@ -9,27 +9,25 @@ If the word is not recognized, a special tag <UNK> (meaning unknown) is output.
 Run pos_lstm.py
 
 ## How to predict
+Enter a sentence (press 'q' to quit): I saw a big building in the city.<br>
+INFO:__main__:Tokens:\['I', 'saw', 'a', 'big', 'building', 'in', 'the', 'city', '.'\]<br>
 
-Enter a sentence (press 'q' to quit): I saw a big building in the city.
-INFO:__main__:Tokens:\['I', 'saw', 'a', 'big', 'building', 'in', 'the', 'city', '.'\]
-(256,)
-(256, 473)
 \[0\] word: I tag: PPSS<br>
-\[1\] word: saw tag: VBD
-\[2\] word: a tag: AT
-\[3\] word: big tag: JJ
-\[4\] word: building tag: NN
-\[5\] word: in tag: IN
-\[6\] word: the tag: AT
-\[7\] word: city tag: NN
-\[8\] word: . tag: .
+\[1\] word: saw tag: VBD<br>
+\[2\] word: a tag: AT<br>
+\[3\] word: big tag: JJ<br>
+\[4\] word: building tag: NN<br>
+\[5\] word: in tag: IN<br>
+\[6\] word: the tag: AT<br>
+\[7\] word: city tag: NN<br>
+\[8\] word: . tag: .<br>
 
 ## Expected loss after 20 epochs
-Here is the loss and accuracy data in my environment after training for 20 epochs:
+Here is the loss and accuracy data in my environment after training for 20 epochs:<br>
  loss: 0.0057 - categorical_accuracy: 0.9983 - val_loss: 0.0210 - val_categorical_accuracy: 0.9950
 
 # Credit
-1. I used \[1\] below as a reference for the model.
+1. I used \[1\] below as a reference for the model.<br>
 2. I used \[2\] as a reference for loading Brown corpus including conversion between word and tag to IDs.
 
 # References
