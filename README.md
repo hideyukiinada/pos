@@ -41,20 +41,20 @@ Enter a sentence (press 'q' to quit): I saw a big building in the city.
 
 It will display the tokenized sentence:
 ```console
-INFO:__main__:Tokens:\['I', 'saw', 'a', 'big', 'building', 'in', 'the', 'city', '.'\]
+INFO:__main__:Tokens:['I', 'saw', 'a', 'big', 'building', 'in', 'the', 'city', '.']
 ```
 
 Then outputs the POS tag for each word:
 ```console
-\[0\] word: I tag: PPSS
-\[1\] word: saw tag: VBD
-\[2\] word: a tag: AT
-\[3\] word: big tag: JJ
-\[4\] word: building tag: NN
-\[5\] word: in tag: IN
-\[6\] word: the tag: AT
-\[7\] word: city tag: NN
-\[8\] word: . tag: .
+[0] word: I tag: PPSS
+[1] word: saw tag: VBD
+[2] word: a tag: AT
+[3] word: big tag: JJ
+[4] word: building tag: NN
+[5] word: in tag: IN
+[6] word: the tag: AT
+[7] word: city tag: NN
+[8] word: . tag: .
 ```
 
 ## Expected loss after 20 epochs
