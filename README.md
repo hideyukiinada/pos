@@ -12,7 +12,7 @@ Have a look at the requirements.txt and verify that you have these packages.  If
 ### Use of NVIDIA GPU
 Use of NVIDIA GPU is strongly recommended.  
 If you don't have NVIDIA GPU, change the model_architecture.py to use LSTM instead of CuDNNLSTM layer. 
-I haven't tried LSTM layer, and theoretiacally it should work, though it will be much slower than CuDNNLSTM.
+I haven't tried LSTM layer for the full training and prediction cycle. Even though it should work theoreticaly, it will be much slower than CuDNNLSTM.
 I put a simple performance comparison in notes.txt.
 
 ### How to configure
