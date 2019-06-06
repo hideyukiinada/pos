@@ -83,7 +83,7 @@ Predictor correctly predicts that the word Jim is a proper noun (NP).  However, 
 ```console
 Aimee saw a big building in the city.
 ```
-the word Aimee is not in Brown Corus, and gets tagged as a noun occurring in the headline (NN-HL).
+the word Aimee is not in Brown Corpus, and gets tagged as a noun occurring in the headline (NN-HL).
 
 <img src="assets/images/aimee.jpg" width="600px"/>
 
