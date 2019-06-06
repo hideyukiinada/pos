@@ -26,7 +26,7 @@ logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))  # Change the 2nd 
 
 import config
 
-def load_data(test_ratio=0.1):
+def load_dataset(test_ratio=0.1):
     """Load corpus
 
     Parameters

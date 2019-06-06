@@ -17,7 +17,14 @@ CuDNNLSTM
  - 34s - loss: 0.3776 - categorical_accuracy: 0.9365
  - 33s - loss: 0.2059 - categorical_accuracy: 0.9460
 
- Loss
+Loss
+----
  20 epochs
+
+# run 1
  51606/51606 [==============================] - 43s 824us/step -
  loss: 0.1462 - categorical_accuracy: 0.9599 - val_loss: 0.1210 - val_categorical_accuracy: 0.9673
+
+# run 2
+ 51606/51606 [==============================] - 42s 822us/step
+ loss: 0.1441 - categorical_accuracy: 0.9603 - val_loss: 0.1204 - val_categorical_accuracy: 0.9670

@@ -14,8 +14,8 @@ BASE_DIR = "./result"
 WEIGHTS_PATH = Path(BASE_DIR) / Path("weights.h5")
 LOG_DIR_PATH = Path(BASE_DIR) / Path("log")
 
-#EPOCHS = 20
-EPOCHS = 1
+EPOCHS = 20
+#EPOCHS = 1
 
 BATCH_SIZE = 64
 MAX_SEQUENCE_SIZE = 256
