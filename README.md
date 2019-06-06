@@ -1,6 +1,6 @@
 # Part of speech tagging using LSTM
 
-This repo contains example code for tagging a sentence using LSTM.
+This repo contains example code for tagging words in a sentence with corresponding [part of speech] (https://en.wikipedia.org/wiki/Part_of_speech) using LSTM.  For example, parts of speech for a sentence *Dogs are awesome* is <noun (for Dogs)>, <verb (for are)>, <adjective (for awesome)>.
 First, you train a model using [Brown Corpus](https://en.wikipedia.org/wiki/Brown_Corpus).
 Once the model is trained, you can enter an English sentence to predict the tag for each word.
 If the word is not recognized, a special tag <UNK> (meaning unknown) is output.
