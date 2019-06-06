@@ -6,12 +6,35 @@ Once the model is trained, you can enter an English sentence to predict the tag 
 If the word is not recognized, a special tag <UNK> (meaning unknown) is output.
 
 ## How to train
-Run pos_lstm.py
+### Installation
+Have a look at the requirements.txt and verify that you have these packages.  If not, install them using pip.
+
+### Run the training script.
+Run:
+pos_lstm.py
+
+You may need to add a Python path to the project directory if your IDE does not set it automatically.
 
 ## How to predict
+Run
+pos_lstm_predict.py
+
+Again, you may need to add a Python path to the project directory if your IDE does not set it automatically.
+
+Once the application starts, it asks you to enter a sentence:
+
+Enter a sentence (press 'q' to quit):
+
+Enter a sample sentence:
+I saw a big I saw a big building in the city.
+and hit the ENTER key.
+
 Enter a sentence (press 'q' to quit): I saw a big building in the city.<br>
+
+It will display the tokenized sentence:
 INFO:__main__:Tokens:\['I', 'saw', 'a', 'big', 'building', 'in', 'the', 'city', '.'\]<br>
 
+Then outputs the POS tag for each word:
 \[0\] word: I tag: PPSS<br>
 \[1\] word: saw tag: VBD<br>
 \[2\] word: a tag: AT<br>
