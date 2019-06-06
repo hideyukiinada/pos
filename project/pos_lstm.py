@@ -33,7 +33,7 @@ def main():
     if base_path.exists() is False:
         base_path.mkdir(exist_ok=True)
 
-    (x_train, y_train), (x_test, y_test), (word2id, id2word), (tag2id, id2tag) = load_dataset(test_ratio=0.1)
+    (x_train, y_train), (x_test, y_test), (word2id, id2word), (tag2id, id2tag) = load_dataset(config.corpus, test_ratio=0.1)
     num_tags = len(id2tag)
 
     y_train_oh = keras.utils.np_utils.to_categorical(y_train, num_tags)

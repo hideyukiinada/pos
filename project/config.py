@@ -10,13 +10,15 @@ __email__ = "hideyuki@gmail.com"
 
 from pathlib import Path
 
+corpus = "conll2002"
+
 BASE_DIR = "./result"
-WEIGHTS_PATH = Path(BASE_DIR) / Path("weights.h5")
+WEIGHTS_PATH = Path(BASE_DIR) / Path(corpus + "_weights.h5")
 LOG_DIR_PATH = Path(BASE_DIR) / Path("log")
 
 EPOCHS = 20
 #EPOCHS = 1
 
 BATCH_SIZE = 64
-MAX_SEQUENCE_SIZE = 256
+MAX_SEQUENCE_SIZE = 2000
 

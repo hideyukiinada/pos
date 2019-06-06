@@ -26,7 +26,7 @@ logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))  # Change the 2nd 
 
 import config
 
-def load_dataset(test_ratio=0.1):
+def load_dataset(corpus='brown', test_ratio=0.1):
     """Load corpus
 
     Parameters
@@ -54,7 +54,7 @@ def load_dataset(test_ratio=0.1):
         id2tag: dict
             Mapping from ID to tag
     """
-    nltk.download('brown')
+    nltk.download(corpus)
 
     word2id = collections.defaultdict(lambda: len(word2id))  # 0-based index
     tag2id = collections.defaultdict(lambda: len(tag2id))
@@ -67,7 +67,13 @@ def load_dataset(test_ratio=0.1):
     word_id_only_sentences = list()
     tag_id_only_sentences = list()
 
-    tagged_sentences = nltk.corpus.brown.tagged_sents()  # [[(w11, t11), (w12, t12), ... ], [(w21, t21), (w22, t22)], ... ]
+    if corpus == 'brown:':
+        tagged_sentences = nltk.corpus.brown.tagged_sents()  # [[(w11, t11), (w12, t12), ... ], [(w21, t21), (w22, t22)], ... ]
+    elif corpus == 'conll2002':
+        tagged_sentences = nltk.corpus.conll2002.tagged_sents()  # [[(w11, t11), (w12, t12), ... ], [(w21, t21), (w22, t22)], ... ]
+    else:
+        raise ValueError("Invalid corpus")
+
     for tagged_sentence in tagged_sentences:
         word_id_only_sentence = [word2id[word] for word, tag in tagged_sentence]
         tag_id_only_sentence = [tag2id[tag] for word, tag in tagged_sentence]

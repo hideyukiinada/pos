@@ -28,3 +28,19 @@ Loss
 # run 2
  51606/51606 [==============================] - 42s 822us/step
  loss: 0.1441 - categorical_accuracy: 0.9603 - val_loss: 0.1204 - val_categorical_accuracy: 0.9670
+
+ConLL2002
+
+INFO:__main__:Size of training set: 32085
+INFO:__main__:Shape of training set: (32085, 2000, 1)
+INFO:__main__:Size of test set: 3566
+INFO:__main__:Number of unique wordss: 65461
+INFO:__main__:Number of unique tags: 73
+INFO:__main__:Weights path: result/conll2002_weights.h5
+Train on 32085 samples, validate on 3566 samples
+
+20 epochs
+
+# run 1
+32085/32085 [==============================] - 47s 1ms/step -
+loss: 0.0173 - categorical_accuracy: 0.9948 - val_loss: 0.0132 - val_categorical_accuracy: 0.9959
