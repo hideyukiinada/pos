@@ -94,6 +94,9 @@ the word Aimee is not in Brown Corpus, and gets tagged as a noun occurring in th
 
 *A photo of Aimée*
 
+# Feedback/Bugs
+Please open an issue in this repo.
+
 # Credit
 1. I used \[1\] below as a reference for the model.<br>
 2. I used \[2\] as a reference for loading Brown corpus including conversion between word and tag to IDs.
