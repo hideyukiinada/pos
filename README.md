@@ -8,7 +8,7 @@ This repo contains example code for tagging words in a sentence with correspondi
 
 Before you can predict POS for your sentence, you need to train a model using [Brown Corpus](https://en.wikipedia.org/wiki/Brown_Corpus).  The training script automatically downloads the corpus using the NLTK package.
 Once the model is trained, you can enter an English sentence to predict the tag for each word.
-If the word is not recognized, a special tag <UNK> (meaning unknown) is output.
+If the word is not recognized, a special tag \<UNK\> (meaning unknown) is output.
 
 ## How to train
 ### Installation
