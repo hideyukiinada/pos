@@ -31,9 +31,7 @@ Once the application starts, it asks you to enter a sentence:
 Enter a sentence (press 'q' to quit):
 ```
 
-Enter a sample sentence, 
-I saw a big I saw a big building in the city.
-and hit the ENTER key.
+Enter a sample sentence, *I saw a big I saw a big building in the city.* and hit the ENTER key.
 
 ```console
 Enter a sentence (press 'q' to quit): I saw a big building in the city.
@@ -75,7 +73,7 @@ Predictor correctly predicts that the word Jim is a proper noun (NP).  However, 
 ```console
 Aimee saw a big building in the city.
 ```
-the word Aimee is tagged as NN-HL.
+the word Aimee is not in Brown Corus, and gets tagged as a noun occurring in the headline (NN-HL).
 
 # Credit
 1. I used \[1\] below as a reference for the model.<br>
