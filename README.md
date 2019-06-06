@@ -11,10 +11,10 @@ Run pos_lstm.py
 ## How to predict
 
 Enter a sentence (press 'q' to quit): I saw a big building in the city.
-INFO:__main__:Tokens:['I', 'saw', 'a', 'big', 'building', 'in', 'the', 'city', '.']
+INFO:__main__:Tokens:\['I', 'saw', 'a', 'big', 'building', 'in', 'the', 'city', '.'\]
 (256,)
 (256, 473)
-\[0\] word: I tag: PPSS
+\[0\] word: I tag: PPSS<br>
 \[1\] word: saw tag: VBD
 \[2\] word: a tag: AT
 \[3\] word: big tag: JJ
