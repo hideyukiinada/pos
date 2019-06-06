@@ -57,11 +57,25 @@ Then outputs the POS tag for each word:
 [8] word: . tag: .
 ```
 
+The above Wikipedia page article has a table that shows the mapping between abbreviations and tags. For example, per the table "PPSS" means "other nominative personal pronoun (I, we, they, you)."
+
 ## Expected loss after 20 epochs
 Here is the loss and accuracy data in my environment after training for 20 epochs:<br>
 ```console
  loss: 0.0057 - categorical_accuracy: 0.9983 - val_loss: 0.0210 - val_categorical_accuracy: 0.9950
 ```
+
+# Limitations
+If you enter a word that is not in the vocabulary in the Brown corpus, the prediction script maps to the Unknown word token and tries to predict.
+The accuracy of the word is not correct.  For example if you change the sample sentence to:
+```console
+Jim saw a big building in the city.
+```
+Predictor correctly predicts that the word Jim is a proper noun (NP).  However, if you change the sentence to:
+```console
+Aimee saw a big building in the city.
+```
+the word Aimee is tagged as NN-HL.
 
 # Credit
 1. I used \[1\] below as a reference for the model.<br>
