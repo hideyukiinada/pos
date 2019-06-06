@@ -94,6 +94,9 @@ the word Aimee is not in Brown Corpus, and gets tagged as a noun occurring in th
 
 *A photo of Aimée*
 
+# Co NLL 2002 corpus
+CoNLL 2002 corpus support is experimental and has not been fully tested.
+
 # Feedback/Bugs
 Please open an issue in this repo.
 
