@@ -79,8 +79,8 @@ Here is the loss and accuracy data in my environment after training for 20 epoch
 ```
 
 # Limitations
-If you enter a word that is not in the vocabulary in the Brown corpus, the prediction script maps to the Unknown word token and tries to predict.
-The accuracy of the word is not correct.  For example if you change the sample sentence to:
+If you enter a word that is not in the vocabulary in the Brown corpus, the prediction script maps it to the unknown word token and tries to predict.
+The accuracy of the prediction seems low based on my experience.  For example if you change the sample sentence to:
 ```console
 Jim saw a big building in the city.
 ```
