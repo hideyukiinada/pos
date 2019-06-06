@@ -42,8 +42,7 @@ def build_model_with_embedding(num_tags, voc_size, sample_dimension):
     model = Sequential()
 
     model.add(Embedding(voc_size, sample_dimension))
-    model.add(LSTM(sample_dimension, input_shape=(config.max_sequence_size, 1),  # FIXME
-                   return_sequences=True))
+    model.add(LSTM(sample_dimension, return_sequences=True))
     model.add(TimeDistributed(Dense(num_tags, activation='softmax')))
 
     return model
