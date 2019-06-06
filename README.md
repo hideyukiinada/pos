@@ -85,6 +85,9 @@ Aimee saw a big building in the city.
 ```
 the word Aimee is not in Brown Corus, and gets tagged as a noun occurring in the headline (NN-HL).
 
+<img src="assets/images/aimee.jpg" width=800/>
+*A photo of Aimée*
+
 # Credit
 1. I used \[1\] below as a reference for the model.<br>
 2. I used \[2\] as a reference for loading Brown corpus including conversion between word and tag to IDs.
