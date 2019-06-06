@@ -1,10 +1,10 @@
 # Part of speech tagging using LSTM
 
 This repo contains example code for tagging words in a sentence with corresponding [part of speech](https://en.wikipedia.org/wiki/Part_of_speech) (or POS) using LSTM.  For example, parts of speech for a sentence *Dogs are awesome* is 
-1. a noun (for *Dogs*), 
-1. a verb (for *are*), 
-1. an adjective (for *awesome*),
-1. a period (for the final .).<br>
+1. a noun (for *Dogs*)
+1. a verb (for *are*) 
+1. an adjective (for *awesome*)
+1. a period (for the final .)
 
 Before you can predict POS for your sentence, you need to train a model using [Brown Corpus](https://en.wikipedia.org/wiki/Brown_Corpus).  The script automatically downloads the corpus using the NLTK package.
 Once the model is trained, you can enter an English sentence to predict the tag for each word.
