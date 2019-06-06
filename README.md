@@ -32,5 +32,5 @@ Here is the loss and accuracy data in my environment after training for 20 epoch
 
 # References
 \[1\] Brownlee, Jason, "How to Develop a Bidirectional LSTM For Sequence Classification in Python with Keras,"
- https://machinelearningmastery.com/develop-bidirectional-lstm-sequence-classification-python-keras/, 2017.
+ https://machinelearningmastery.com/develop-bidirectional-lstm-sequence-classification-python-keras/, 2017.<br>
 \[2\] Chainer team, postagging.py, https://github.com/chainer/chainer/blob/master/examples/pos/postagging.py.
