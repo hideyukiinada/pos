@@ -42,7 +42,8 @@ def main():
         base_path.mkdir(exist_ok=True)
 
     (x_train, y_train), (x_test, y_test), (word2id, id2word), (tag2id, id2tag) = load_dataset(config.corpus,
-                                                                                              test_ratio=0.1)
+                                                                                              test_ratio=0.1,
+                                                                                              data_dir=config.base_dir)
     voc_size = len(word2id)
     num_tags = len(id2tag)
 

@@ -17,7 +17,7 @@ import numpy as np
 
 import nltk
 
-from load_data import load_dataset
+from load_data import load_dataset_using_saved_dictionaries
 import config
 import model_architecture
 
@@ -80,8 +80,10 @@ def main():
 
     log.info("Started.")
 
-    (x_train, y_train), (x_test, y_test), (word2id, id2word), (tag2id, id2tag) = load_dataset(config.corpus,
-                                                                                              test_ratio=0.1)
+    (x_train, y_train), (x_test, y_test), (word2id, id2word), (tag2id, id2tag) = load_dataset_using_saved_dictionaries(
+        config.corpus,
+        test_ratio=0.1,
+        data_dir=config.base_dir)
     voc_size = len(word2id)
     num_tags = len(id2tag)
 
